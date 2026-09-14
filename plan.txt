@@ -1,0 +1,929 @@
+You are now acting as a SENIOR FRONT-END ENGINEER, UI/UX DESIGNER,
+CREATIVE DIRECTOR and QA SPECIALIST.
+
+You previously created the Digital Craft website, but the current
+implementation contains visual, responsive, UX, typography, spacing,
+animation and technical problems.
+
+Your task is NOT to redesign the brand from scratch.
+
+Your task is to AUDIT, REPAIR, POLISH and COMPLETE the existing website.
+
+========================================================
+IMPORTANT — PRESERVE THE DIGITAL CRAFT BRAND
+========================================================
+
+The website belongs to:
+
+DIGITAL CRAFT
+
+Tagline:
+
+"WE DON'T JUST DESIGN.
+WE CRAFT EXPERIENCES."
+
+The website must remain consistent with our existing brand identity.
+
+DO NOT replace the current brand with a generic template.
+
+DO NOT change the logo concept.
+
+DO NOT randomly introduce new colors.
+
+DO NOT replace the typography with another font.
+
+DO NOT completely redesign sections that are already working.
+
+Improve the existing website while preserving its visual identity.
+
+========================================================
+BRAND COLORS
+========================================================
+
+Primary Purple:
+#7C3AED
+
+Bright Blue:
+#3882F6
+
+Silver Light:
+#E5E7EB
+
+Charcoal:
+#0F1115
+
+Dark Slate:
+#1A1D23
+
+Main gradient:
+
+#3882F6 → #7C3AED
+
+Use the colors consistently.
+
+Dark charcoal should remain the main background.
+
+Purple and blue should be accents, not the entire interface.
+
+Avoid excessive neon effects.
+
+========================================================
+TYPOGRAPHY
+========================================================
+
+Primary font:
+
+SATOSHI
+
+Use:
+
+Satoshi Bold
+→ Hero headings
+→ Major headings
+→ Important titles
+
+Satoshi Medium
+→ Navigation
+→ Buttons
+→ Subheadings
+
+Satoshi Regular
+→ Body text
+
+Satoshi Light
+→ Supporting text
+→ Small labels
+
+DO NOT replace Satoshi with Inter, Roboto, Arial or another generic font.
+
+Typography is a major part of the Digital Craft identity.
+
+Check:
+
+- font loading
+- font weights
+- letter spacing
+- line height
+- heading sizes
+- mobile typography
+- text alignment
+
+========================================================
+PHASE 1 — AUDIT THE CURRENT WEBSITE
+========================================================
+
+Before modifying the code, inspect the entire existing project.
+
+Check:
+
+- every page
+- every component
+- every section
+- every image
+- every animation
+- every button
+- every navigation link
+- every form
+- desktop layout
+- tablet layout
+- mobile layout
+- typography
+- spacing
+- responsiveness
+- accessibility
+- performance
+- console errors
+- broken routes
+- missing assets
+- incorrect imports
+- unnecessary dependencies
+
+Do not blindly rewrite components.
+
+Identify what is already good and preserve it.
+
+========================================================
+PHASE 2 — FIX THE LAYOUT
+========================================================
+
+Fix:
+
+- inconsistent margins
+- inconsistent padding
+- incorrect container widths
+- elements touching screen edges
+- excessive empty space
+- sections that are too compressed
+- uneven grids
+- misaligned elements
+- inconsistent card heights
+- incorrect vertical rhythm
+- broken alignment
+- overflow problems
+- horizontal scrolling
+
+Use a consistent layout system.
+
+Recommended maximum content width:
+
+1200–1400px depending on the section.
+
+Keep sufficient horizontal padding.
+
+Desktop should feel spacious.
+
+Mobile should feel intentional.
+
+========================================================
+PHASE 3 — FIX THE HERO
+========================================================
+
+The hero is the most important section.
+
+It must immediately communicate:
+
+DIGITAL CRAFT
+
+and:
+
+"WE DON'T JUST DESIGN.
+WE CRAFT EXPERIENCES."
+
+The hero should feel:
+
+- premium
+- cinematic
+- creative
+- confident
+- modern
+
+Do not overload the hero with effects.
+
+The headline must be readable.
+
+The background must support the typography rather than compete with it.
+
+Maintain the dark charcoal background.
+
+Use subtle blue/purple light.
+
+Possible background elements:
+
+- subtle particles
+- flowing purple ribbon
+- thin contour lines
+- digital grid
+- subtle glow
+
+Keep the center relatively clean.
+
+The CTA buttons must be clearly visible.
+
+Primary:
+
+VIEW OUR WORK
+
+Secondary:
+
+LET'S WORK TOGETHER
+
+========================================================
+PHASE 4 — NAVIGATION
+========================================================
+
+Fix the navbar.
+
+Desktop:
+
+DC LOGO
+
+WORK
+SERVICES
+ABOUT
+PROCESS
+
+CONTACT
+
+The navbar must:
+
+- align correctly
+- have consistent spacing
+- remain readable
+- work on all pages
+- have correct active states
+- have smooth hover states
+- become slightly darker/blurred when scrolling
+
+Mobile:
+
+Create a proper mobile navigation menu.
+
+Do not simply shrink the desktop navbar.
+
+The mobile menu must:
+
+- open smoothly
+- close correctly
+- prevent background scrolling
+- have readable typography
+- have large touch targets
+
+========================================================
+PHASE 5 — SERVICES
+========================================================
+
+Services:
+
+01 DESIGN
+02 MOTION
+03 WEB
+04 PRESENTATION
+
+Each service must have:
+
+- number
+- title
+- description
+- visual/icon
+- hover interaction
+
+The cards must feel like part of ONE visual system.
+
+Do not use random icons from different styles.
+
+Use consistent icon weight and proportions.
+
+Hover states should be subtle.
+
+Avoid excessive glowing effects.
+
+========================================================
+PHASE 6 — PORTFOLIO
+========================================================
+
+Portfolio is one of the most important parts of the website.
+
+Make it visually dominant.
+
+Portfolio cards must have:
+
+- consistent image ratio
+- clean cropping
+- title
+- category
+- year
+- hover effect
+- clear clickable area
+
+On hover:
+
+- image subtly zooms
+- card moves slightly
+- gradient accent appears
+- arrow appears
+
+Do NOT use fake projects.
+
+If actual projects are not available, use clearly marked placeholders.
+
+Portfolio data must come from structured data.
+
+Example:
+
+projects = [
+    {
+        slug,
+        title,
+        category,
+        year,
+        description,
+        image,
+        services,
+        gallery
+    }
+]
+
+========================================================
+PHASE 7 — PROJECT DETAIL PAGES
+========================================================
+
+Every portfolio project should have a proper detail page.
+
+Structure:
+
+PROJECT TITLE
+
+Category
+Year
+Services
+
+↓
+
+PROJECT OVERVIEW
+
+↓
+
+THE CHALLENGE
+
+↓
+
+OUR APPROACH
+
+↓
+
+DESIGN PROCESS
+
+↓
+
+FINAL RESULT
+
+↓
+
+PROJECT GALLERY
+
+↓
+
+NEXT PROJECT
+
+↓
+
+LET'S CRAFT SOMETHING GREAT
+
+Fix all broken project routes.
+
+Make sure browser refresh works on project pages.
+
+========================================================
+PHASE 8 — ABOUT PAGE
+========================================================
+
+The About page should explain who Digital Craft actually is.
+
+Main idea:
+
+"Digital Craft is a creative digital team combining design, motion,
+web development and visual storytelling."
+
+Explain:
+
+- who we are
+- what we believe
+- our mission
+- our vision
+- how we work
+
+Do not use generic corporate paragraphs.
+
+Keep the copy concise.
+
+========================================================
+PHASE 9 — PROCESS
+========================================================
+
+Show:
+
+01 DISCOVER
+
+Understand the idea, problem and objective.
+
+02 DEFINE
+
+Establish the creative direction.
+
+03 DESIGN
+
+Transform the idea into a visual system.
+
+04 BUILD
+
+Develop, animate and refine.
+
+05 DELIVER
+
+Deliver the final experience.
+
+The process should be visually connected.
+
+Use subtle scroll animation.
+
+========================================================
+PHASE 10 — CONTACT
+========================================================
+
+The contact section must be designed to convert visitors into clients.
+
+Headline:
+
+"LET'S CRAFT SOMETHING GREAT."
+
+Text:
+
+"Have an idea, project or challenge?
+Let's talk about it."
+
+Form fields:
+
+Name
+Company
+Email
+Phone / WhatsApp
+Project Type
+Budget
+Timeline
+Project Description
+
+Project Type:
+
+Branding
+Design
+Motion
+Web
+Presentation
+Multiple Services
+Other
+
+Use placeholder contact information where real information is missing.
+
+DO NOT invent phone numbers or emails.
+
+========================================================
+PHASE 11 — RESPONSIVE DESIGN
+========================================================
+
+This is extremely important.
+
+Test:
+
+320px
+375px
+390px
+430px
+768px
+1024px
+1280px
+1440px
+1920px
+
+The website must work at all sizes.
+
+MOBILE IS NOT AN AFTERTHOUGHT.
+
+Check:
+
+- hero
+- navbar
+- typography
+- cards
+- portfolio
+- buttons
+- images
+- forms
+- footer
+- spacing
+- animations
+
+There must be NO:
+
+- horizontal scrolling
+- overflowing text
+- cropped buttons
+- overlapping elements
+- broken grids
+- tiny unreadable text
+- elements outside viewport
+
+========================================================
+PHASE 12 — MOBILE HERO
+========================================================
+
+The mobile hero should be redesigned responsively.
+
+Do not simply scale the desktop hero.
+
+Use a sensible mobile layout:
+
+Logo
+↓
+Headline
+↓
+Description
+↓
+CTA
+↓
+subtle visual
+
+The headline should remain powerful without taking the entire screen.
+
+========================================================
+PHASE 13 — ANIMATION REPAIR
+========================================================
+
+Animations should feel:
+
+smooth
+premium
+intentional
+
+Avoid:
+
+- excessive bouncing
+- constant movement
+- distracting particles
+- animation everywhere
+- slow page loading caused by effects
+
+Use:
+
+- fade
+- reveal
+- transform
+- subtle parallax
+- image zoom
+- hover transitions
+
+Respect:
+
+prefers-reduced-motion
+
+If the current animation causes performance problems,
+simplify it instead of removing the entire visual identity.
+
+========================================================
+PHASE 14 — COLORS
+========================================================
+
+Audit the entire website.
+
+Remove colors that don't belong to the Digital Craft system.
+
+Allowed core palette:
+
+#7C3AED
+#3882F6
+#E5E7EB
+#0F1115
+#1A1D23
+
+Do not introduce random:
+
+green
+orange
+red
+yellow
+pink
+
+unless required for actual portfolio content.
+
+The website should immediately look like Digital Craft.
+
+========================================================
+PHASE 15 — BUTTONS
+========================================================
+
+Create one consistent button system.
+
+Primary button:
+
+Blue → Purple gradient
+
+Secondary:
+
+Transparent / dark
+with subtle border
+
+Hover:
+
+small movement
+subtle glow
+smooth transition
+
+Do not make buttons huge.
+
+Do not use different button styles randomly across pages.
+
+========================================================
+PHASE 16 — CARDS
+========================================================
+
+Cards should use:
+
+#1A1D23
+
+with subtle borders.
+
+Avoid excessive glassmorphism.
+
+Avoid huge border radius.
+
+Use consistent:
+
+padding
+radius
+border
+shadow
+hover
+
+========================================================
+PHASE 17 — IMAGES
+========================================================
+
+Audit all images.
+
+Fix:
+
+- incorrect aspect ratios
+- stretching
+- pixelation
+- bad cropping
+- inconsistent dimensions
+
+Use:
+
+object-fit: cover
+
+where appropriate.
+
+Use:
+
+loading="lazy"
+
+for images below the fold.
+
+Do not use massive images unnecessarily.
+
+========================================================
+PHASE 18 — ACCESSIBILITY
+========================================================
+
+Fix:
+
+- missing alt text
+- poor contrast
+- missing focus states
+- inaccessible buttons
+- keyboard navigation
+- semantic HTML
+- heading hierarchy
+
+Make interactive elements accessible.
+
+========================================================
+PHASE 19 — PERFORMANCE
+========================================================
+
+Optimize:
+
+- images
+- fonts
+- animations
+- JavaScript
+- unnecessary dependencies
+
+Do not sacrifice visual quality unnecessarily.
+
+Check for:
+
+- console errors
+- hydration errors
+- failed network requests
+- unnecessary rerenders
+- layout shifts
+
+========================================================
+PHASE 20 — CODE QUALITY
+========================================================
+
+Do not create a giant single component.
+
+Use reusable components.
+
+Suggested architecture:
+
+components/
+    layout/
+    ui/
+    sections/
+    portfolio/
+    animations/
+
+data/
+    projects.ts
+    services.ts
+    team.ts
+
+Use clean TypeScript.
+
+Remove duplicated code.
+
+Remove unused imports.
+
+Remove dead code.
+
+Do not install unnecessary libraries.
+
+========================================================
+PHASE 21 — CONTENT
+========================================================
+
+Keep the Digital Craft voice:
+
+Confident
+Human
+Creative
+Clear
+Professional
+
+Use:
+
+"WE DON'T JUST DESIGN.
+WE CRAFT EXPERIENCES."
+
+"IDEAS IN MOTION."
+
+"BUILT FOR DIGITAL."
+
+"DETAIL MATTERS."
+
+"FROM IDEA TO EXPERIENCE."
+
+"LET'S CRAFT SOMETHING GREAT."
+
+For Algerian audience, selected sections may use:
+
+"ماشي غير نصممو، نصنعو تجارب."
+
+"عندك فكرة؟ نخليوها واقع."
+
+"من الفكرة للحل."
+
+Do not fill the entire website with Darija.
+
+English remains the primary website language.
+
+========================================================
+PHASE 22 — SEO
+========================================================
+
+Add proper:
+
+title
+meta description
+Open Graph metadata
+favicon
+canonical URLs
+
+Suggested title:
+
+Digital Craft — We Craft Digital Experiences
+
+Suggested description:
+
+"Digital Craft is a creative digital studio specializing in design,
+motion, web development and visual experiences."
+
+Use proper:
+
+H1
+H2
+H3
+
+hierarchy.
+
+========================================================
+PHASE 23 — FINAL QA
+========================================================
+
+After all repairs, perform a complete QA pass.
+
+Test every:
+
+PAGE
+LINK
+BUTTON
+FORM
+IMAGE
+ANIMATION
+NAVIGATION
+PORTFOLIO CARD
+PROJECT PAGE
+
+Check:
+
+Desktop
+Tablet
+Mobile
+
+Check browser console.
+
+There should be no:
+
+errors
+warnings caused by our implementation
+broken imports
+missing assets
+404 pages
+layout overflow
+
+========================================================
+CRITICAL RULE
+========================================================
+
+DO NOT rebuild the website blindly.
+
+DO NOT change the Digital Craft identity.
+
+DO NOT replace Satoshi.
+
+DO NOT change the core colors.
+
+DO NOT redesign the DC logo.
+
+DO NOT add random visual styles.
+
+DO NOT invent clients.
+
+DO NOT invent testimonials.
+
+DO NOT invent statistics.
+
+DO NOT invent contact information.
+
+Instead:
+
+AUDIT → IDENTIFY → REPAIR → TEST → POLISH.
+
+========================================================
+FINAL OBJECTIVE
+========================================================
+
+When finished, the website should feel like:
+
+A PREMIUM CREATIVE STUDIO
+
+not:
+
+A TEMPLATE
+
+not:
+
+A GENERIC SAAS WEBSITE
+
+not:
+
+AN AI-GENERATED WEBSITE
+
+The final impression should be:
+
+"Digital Craft takes design seriously."
+
+"These people have taste."
+
+"They can handle a real project."
+
+"I want to contact them."
+
+Preserve the brand.
+
+Improve the execution.
+
+Make every detail intentional.
