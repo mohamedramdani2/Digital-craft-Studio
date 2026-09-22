@@ -370,45 +370,291 @@ if ('IntersectionObserver' in window) {
   revealEls.forEach(el => el.classList.add('in'));
 }
 
-// 9. Contact Form Validation & Submission
-const projectForm = document.getElementById('project-form');
-const formSuccess = document.getElementById('formSuccess');
-const submitBtn = document.getElementById('submitBtn');
+// ========================================================
+// 9. PROJECT INQUIRY FORM — DUAL SUBMISSION (WHATSAPP & EMAIL)
+// ========================================================
 
-if (projectForm) {
-  projectForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+/**
+ * DIGITAL CRAFT CONTACT CONFIGURATION
+ * IMPORTANT: Replace these placeholder values with the official Digital Craft credentials.
+ * whatsapp: country code + number without '+' or spaces (e.g. "213556882629")
+ * email: official receiving inquiry email (e.g. "hello@digitalcraft.dz")
+ */
+const CONTACT_CONFIG = {
+  whatsapp: "+213556882629", // Replace with real Digital Craft WhatsApp number
+  email: "digitalcraftstudio3@gmail.com", // Replace with real Digital Craft email
+};
 
-    // Simple validation
-    const name = document.getElementById('f-name');
-    const email = document.getElementById('f-email');
-    const desc = document.getElementById('f-desc');
+(function initInquiryForm() {
+  const form = document.getElementById('project-form');
+  if (!form) return;
 
-    if (!name.value.trim() || !email.value.trim() || !desc.value.trim()) {
-      alert('Please complete all required fields.');
-      return;
-    }
+  const nameInput = document.getElementById('f-name');
+  const emailInput = document.getElementById('f-email');
+  const phoneInput = document.getElementById('f-phone');
+  const companyInput = document.getElementById('f-company');
+  const descInput = document.getElementById('f-desc');
+  const budgetSelect = document.getElementById('f-budget');
+  const timelineSelect = document.getElementById('f-timeline');
+  const sourceSelect = document.getElementById('f-source');
+  const serviceChips = document.querySelectorAll('.service-chip');
 
-    // Submit state simulation
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Sending Request...</span>';
-    }
+  const btnWhatsapp = document.getElementById('btnSubmitWhatsapp');
+  const btnEmail = document.getElementById('btnSubmitEmail');
 
-    setTimeout(() => {
-      if (formSuccess) {
-        formSuccess.classList.add('show');
+  const feedbackBanner = document.getElementById('formFeedback');
+  const feedbackTitle = document.getElementById('feedbackTitle');
+  const feedbackMsg = document.getElementById('feedbackMsg');
+  const feedbackFallback = document.getElementById('feedbackFallback');
+  const feedbackManualLink = document.getElementById('feedbackManualLink');
+
+  // Track selected services in state
+  const selectedServices = new Set();
+
+  // Service chips toggle logic
+  serviceChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const service = chip.getAttribute('data-service');
+      if (selectedServices.has(service)) {
+        selectedServices.delete(service);
+        chip.classList.remove('selected');
+        chip.setAttribute('aria-pressed', 'false');
+      } else {
+        selectedServices.add(service);
+        chip.classList.add('selected');
+        chip.setAttribute('aria-pressed', 'true');
       }
-      projectForm.reset();
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span>Send Project Request</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      }
-      // Scroll smoothly to notification
-      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 800);
+      clearFieldError('services');
+    });
   });
-}
+
+  // Clear errors when typing or changing fields
+  if (nameInput) nameInput.addEventListener('input', () => clearFieldError('name'));
+  if (emailInput) emailInput.addEventListener('input', () => clearFieldError('email'));
+  if (phoneInput) phoneInput.addEventListener('input', () => clearFieldError('phone'));
+  if (descInput) descInput.addEventListener('input', () => clearFieldError('desc'));
+
+  function setFieldError(fieldKey, message) {
+    const fieldContainer = document.getElementById(`field-${fieldKey}`);
+    const errEl = document.getElementById(`err-${fieldKey}`);
+    if (fieldContainer) fieldContainer.classList.add('has-error');
+    if (errEl) {
+      errEl.textContent = message;
+      errEl.classList.add('show');
+    }
+  }
+
+  function clearFieldError(fieldKey) {
+    const fieldContainer = document.getElementById(`field-${fieldKey}`);
+    const errEl = document.getElementById(`err-${fieldKey}`);
+    if (fieldContainer) fieldContainer.classList.remove('has-error');
+    if (errEl) {
+      errEl.textContent = '';
+      errEl.classList.remove('show');
+    }
+  }
+
+  function validateForm() {
+    let isValid = true;
+    let firstErrorEl = null;
+
+    // Validate Full Name
+    const nameVal = nameInput ? nameInput.value.trim() : '';
+    if (!nameVal || nameVal.length < 2) {
+      setFieldError('name', 'Please enter your name.');
+      if (!firstErrorEl) firstErrorEl = nameInput;
+      isValid = false;
+    } else {
+      clearFieldError('name');
+    }
+
+    // Validate Email
+    const emailVal = emailInput ? emailInput.value.trim() : '';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailVal || !emailRegex.test(emailVal)) {
+      setFieldError('email', 'Please enter a valid email address.');
+      if (!firstErrorEl) firstErrorEl = emailInput;
+      isValid = false;
+    } else {
+      clearFieldError('email');
+    }
+
+    // Validate Phone Number
+    const phoneVal = phoneInput ? phoneInput.value.trim() : '';
+    // Reasonable validation: allow Algerian formats (05/06/07..., +213...) & international formats, minimum 8 digits/characters
+    const cleanDigits = phoneVal.replace(/[^0-9]/g, '');
+    if (!phoneVal || cleanDigits.length < 8) {
+      setFieldError('phone', 'Please enter a valid phone or WhatsApp number.');
+      if (!firstErrorEl) firstErrorEl = phoneInput;
+      isValid = false;
+    } else {
+      clearFieldError('phone');
+    }
+
+    // Validate Service Selection
+    if (selectedServices.size === 0) {
+      setFieldError('services', 'Please select at least one service you need.');
+      if (!firstErrorEl) firstErrorEl = document.getElementById('field-services');
+      isValid = false;
+    } else {
+      clearFieldError('services');
+    }
+
+    // Validate Project Description
+    const descVal = descInput ? descInput.value.trim() : '';
+    if (!descVal || descVal.length < 8) {
+      setFieldError('desc', 'Please tell us what you need.');
+      if (!firstErrorEl) firstErrorEl = descInput;
+      isValid = false;
+    } else {
+      clearFieldError('desc');
+    }
+
+    if (!isValid && firstErrorEl) {
+      firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (typeof firstErrorEl.focus === 'function') firstErrorEl.focus();
+    }
+
+    return isValid;
+  }
+
+  function getFormData() {
+    return {
+      name: nameInput ? nameInput.value.trim() : '',
+      email: emailInput ? emailInput.value.trim() : '',
+      phone: phoneInput ? phoneInput.value.trim() : '',
+      company: (companyInput && companyInput.value.trim()) ? companyInput.value.trim() : '—',
+      services: Array.from(selectedServices).join(', '),
+      description: descInput ? descInput.value.trim() : '',
+      budget: (budgetSelect && budgetSelect.value) ? budgetSelect.value : 'Not specified',
+      timeline: (timelineSelect && timelineSelect.value) ? timelineSelect.value : 'Flexible',
+      source: (sourceSelect && sourceSelect.value) ? sourceSelect.value : 'Direct / Other'
+    };
+  }
+
+  function buildWhatsAppMessage(data) {
+    return `Hello Digital Craft 👋
+
+I would like to discuss a new project.
+
+━━━━━━━━━━━━━━
+CLIENT
+━━━━━━━━━━━━━━
+Name: ${data.name}
+Email: ${data.email}
+WhatsApp: ${data.phone}
+Company: ${data.company}
+
+━━━━━━━━━━━━━━
+PROJECT
+━━━━━━━━━━━━━━
+Service: ${data.services}
+Description: ${data.description}
+Budget: ${data.budget}
+Timeline: ${data.timeline}
+How they found us: ${data.source}
+
+Looking forward to hearing from you.
+Thank you!`;
+  }
+
+  function buildEmailBody(data) {
+    return `Hello Digital Craft Team,
+
+I would like to discuss a new project. Here are the details:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+CLIENT DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Full Name: ${data.name}
+• Email: ${data.email}
+• WhatsApp / Phone: ${data.phone}
+• Company / Brand: ${data.company}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROJECT BRIEF
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Service Needed: ${data.services}
+• Project Description:
+${data.description}
+
+• Estimated Budget: ${data.budget}
+• Desired Timeline: ${data.timeline}
+• How I Found You: ${data.source}
+
+Looking forward to collaborating with Digital Craft.
+
+Best regards,
+${data.name}`;
+  }
+
+  function handleSubmission(channel) {
+    if (!validateForm()) return;
+
+    const data = getFormData();
+
+    if (channel === 'whatsapp') {
+      const message = buildWhatsAppMessage(data);
+      const encodedMsg = encodeURIComponent(message);
+      const waUrl = `https://wa.me/${CONTACT_CONFIG.whatsapp}?text=${encodedMsg}`;
+
+      // Update Feedback banner
+      if (feedbackBanner && feedbackTitle && feedbackMsg) {
+        feedbackBanner.style.display = 'block';
+        feedbackTitle.textContent = 'Your inquiry is ready to send.';
+        feedbackMsg.textContent = 'WhatsApp is opening with your project details.';
+        if (feedbackFallback && feedbackManualLink) {
+          feedbackFallback.style.display = 'block';
+          feedbackManualLink.href = waUrl;
+          feedbackManualLink.textContent = 'Click here to open WhatsApp directly';
+        }
+        feedbackBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // Open WhatsApp in new tab / app
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    } else if (channel === 'email') {
+      const subject = 'New Project Inquiry — Digital Craft';
+      const body = buildEmailBody(data);
+      const mailtoUrl = `mailto:${CONTACT_CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Update Feedback banner
+      if (feedbackBanner && feedbackTitle && feedbackMsg) {
+        feedbackBanner.style.display = 'block';
+        feedbackTitle.textContent = 'Your inquiry is ready to send.';
+        feedbackMsg.textContent = 'Your email client is opening with your project details.';
+        if (feedbackFallback && feedbackManualLink) {
+          feedbackFallback.style.display = 'block';
+          feedbackManualLink.href = mailtoUrl;
+          feedbackManualLink.textContent = 'Click here to open your email client';
+        }
+        feedbackBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // Trigger mailto link
+      window.location.href = mailtoUrl;
+    }
+  }
+
+  if (btnWhatsapp) {
+    btnWhatsapp.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleSubmission('whatsapp');
+    });
+  }
+
+  if (btnEmail) {
+    btnEmail.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleSubmission('email');
+    });
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    handleSubmission('whatsapp');
+  });
+})();
 
 // 10. Ambient Particle Canvas
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
