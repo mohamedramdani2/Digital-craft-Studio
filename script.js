@@ -79,6 +79,46 @@ const projects = [
     approach: 'We developed a clean, high-contrast UI with a clinical blue palette, clear typographic hierarchy, structured course modules, and interactive assessment components.',
     result: 'A fully deployed edtech platform demonstrating our ability to build complex, content-rich web applications for specialised professional audiences.',
     liveUrl: 'https://medical-learning-platform.onrender.com/'
+  },
+  {
+    id: 'nexashop',
+    title: 'NEXASHOP — Modern E-Commerce Platform',
+    category: 'web',
+    categoryLabel: 'Web & E-Commerce Development',
+    year: '2026',
+    shortDesc: 'A full-stack, responsive e-commerce platform built with modern architecture, catalog navigation, and intuitive checkout workflows.',
+    colorGradient: 'linear-gradient(135deg, #091a2f, #1b3a5b)',
+    accentColor: '#3882F6',
+    tags: ['E-Commerce', 'Full-Stack', 'Web Development', 'GitHub Repo'],
+    client: 'NexaShop Store',
+    timeline: 'Featured Project',
+    services: 'UI/UX Design, Frontend & Backend Development, E-Commerce Integration',
+    overview: 'NexaShop is a modern, high-performance e-commerce solution designed for seamless online shopping. It features dynamic product listings, category filters, robust cart management, and a clean user-centric interface.',
+    challenge: 'Developing a performant, modular e-commerce application with clean code practices, responsive layouts across devices, and structured product data handling.',
+    approach: 'We architected a clean frontend with responsive grid layouts, modular component design, smooth interactive UI states, and robust codebase organization.',
+    result: 'A production-ready open-source e-commerce project showcasing end-to-end full-stack development expertise and aesthetic excellence.',
+    githubUrl: 'https://github.com/mohamedramdani2/NexaShop.git',
+    liveUrl: 'https://github.com/mohamedramdani2/NexaShop'
+  },
+  {
+    id: 'digital-craft-decks',
+    title: 'DIGITAL CRAFT — Pitch Decks & Presentations',
+    category: 'presentation',
+    categoryLabel: 'Presentation & Deck Design',
+    year: '2026',
+    shortDesc: 'Curated collection of high-impact investor pitch decks, brand presentations, and corporate keynotes engineered for persuasive storytelling.',
+    colorGradient: 'linear-gradient(135deg, #18092e, #36155e)',
+    accentColor: '#A855F7',
+    tags: ['Pitch Decks', 'Google Drive', 'Keynote', 'Visual Storytelling'],
+    client: 'Digital Craft & Clients',
+    timeline: 'Featured Collection',
+    services: 'Pitch Deck Design, Visual Storytelling, Corporate Keynotes, Slide Systems',
+    overview: 'A premier collection of professional presentation decks, pitch frameworks, and visual storytelling slides crafted to articulate complex business concepts and elevate brand credibility.',
+    challenge: 'Structuring dense information and key business value propositions into visually captivating slides with clear typographic hierarchy and refined aesthetics.',
+    approach: 'We developed consistent slide design systems utilizing dark luxury studio aesthetics, custom charts, clear data visualization, and compelling slide flow.',
+    result: 'High-converting presentation assets accessible directly on Google Drive for client reviews, stakeholder meetings, and investment rounds.',
+    presentationUrl: 'https://drive.google.com/drive/folders/1tYgVevU0zd8qaso7Xi8bUDyoh2Yeb0f4?usp=sharing',
+    liveUrl: 'https://drive.google.com/drive/folders/1tYgVevU0zd8qaso7Xi8bUDyoh2Yeb0f4?usp=sharing'
   }
 ];
 
@@ -238,8 +278,16 @@ function openCaseStudy(id) {
         <strong style="color:#fff; font-size:16px;">Inspired by this project?</strong>
         <p style="color:var(--muted); font-size:13.5px; margin-top:2px;">Let's craft something exceptional for your brand.</p>
       </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        ${project.liveUrl ? `<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>View GitHub Repo</span>
+        </a>` : ''}
+        ${project.presentationUrl ? `<a href="${project.presentationUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>View on Google Drive</span>
+        </a>` : ''}
+        ${project.liveUrl && !project.githubUrl && !project.presentationUrl ? `<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
           <span>View Live Project</span>
           <svg width="14" height="14" viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H4M11 2V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>` : ''}
